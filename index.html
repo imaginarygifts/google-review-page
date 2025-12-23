@@ -1,50 +1,123 @@
-<div class="review-container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leave a Google Review</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <h2>Leave us a Google Review ❤️</h2>
-  <p>Select a review or type your own</p>
+  <!-- CSS HERE -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+    }
 
-  <!-- Suggested Reviews -->
-  <div class="review-card" onclick="copyReview(this)">
-    Amazing quality and fast delivery. Loved the personalized touch. Highly recommended!
+    .review-container {
+      max-width: 420px;
+      margin: auto;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .review-card {
+      background: #fff;
+      padding: 14px;
+      margin: 12px 0;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    .review-card:hover {
+      background: #f1f1f1;
+    }
+
+    .custom-review-btn {
+      margin-top: 18px;
+      padding: 12px 20px;
+      border-radius: 25px;
+      border: none;
+      background: #000;
+      color: #fff;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .popup.show {
+      display: flex;
+    }
+
+    .popup-box {
+      background: #fff;
+      padding: 22px 26px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="review-container">
+    <h2>Leave us a Google Review ❤️</h2>
+    <p>Select a review or type your own</p>
+
+    <div class="review-card" onclick="copyReview(this)">
+      Amazing quality and fast delivery. Loved the personalized touch. Highly recommended!
+    </div>
+
+    <div class="review-card" onclick="copyReview(this)">
+      Excellent experience! Beautiful customization and very professional service.
+    </div>
+
+    <div class="review-card" onclick="copyReview(this)">
+      Great product quality and timely delivery. Perfect for gifting.
+    </div>
+
+    <button class="custom-review-btn" onclick="goToGoogle()">
+      ✍️ Type your own review
+    </button>
   </div>
 
-  <div class="review-card" onclick="copyReview(this)">
-    Excellent experience! Beautiful customization and very professional service.
+  <div id="popup" class="popup">
+    <div class="popup-box">
+      ✅ Copied! <br> Redirecting to review page...
+    </div>
   </div>
 
-  <div class="review-card" onclick="copyReview(this)">
-    Great product quality and timely delivery. Perfect for gifting.
-  </div>
+  <!-- JS -->
+  <script>
+    const googleReviewLink = "PASTE_YOUR_GOOGLE_REVIEW_LINK_HERE";
 
-  <!-- Type your own review button -->
-  <button class="custom-review-btn" onclick="goToGoogle()">
-    ✍️ Type your own review
-  </button>
+    function copyReview(el) {
+      navigator.clipboard.writeText(el.innerText);
+      document.getElementById("popup").classList.add("show");
+      setTimeout(() => {
+        window.location.href = googleReviewLink;
+      }, 1500);
+    }
 
-</div>
+    function goToGoogle() {
+      window.location.href = googleReviewLink;
+    }
+  </script>
 
-<!-- Popup -->
-<div id="popup" class="popup">
-  <div class="popup-box">
-    ✅ Copied! <br>
-    Redirecting to review page...
-  </div>
-</div>
-
-<script>
-const googleReviewLink = "PASTE_YOUR_GOOGLE_REVIEW_LINK_HERE";
-
-function copyReview(el) {
-  navigator.clipboard.writeText(el.innerText);
-
-  document.getElementById("popup").classList.add("show");
-
-  setTimeout(() => {
-    window.location.href = googleReviewLink;
-  }, 1500);
-}
-
-function goToGoogle() {
-  window.location.href = googleReviewLink;
-}
-</script>
+</body>
+</html>
