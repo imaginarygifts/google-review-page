@@ -2,57 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Leave a Google Review</title>
+  <title>Review | Imaginary Gifts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- CSS HERE -->
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
+      font-family: 'Poppins', sans-serif;
+      background: #f7f7f7;
+      color: #111;
     }
 
     .review-container {
       max-width: 420px;
       margin: auto;
-      padding: 20px;
+      padding: 22px 18px 30px;
       text-align: center;
     }
 
+    .logo {
+      margin-bottom: 14px;
+    }
+
+    .logo img {
+      max-width: 150px;
+    }
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+
+    p.subtitle {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 18px;
+    }
+
     .review-card {
-      background: #fff;
-      padding: 14px;
+      background: #ffffff;
+      padding: 15px;
       margin: 12px 0;
-      border-radius: 12px;
+      border-radius: 14px;
       cursor: pointer;
-      font-size: 15px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      font-size: 14.5px;
+      line-height: 1.5;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      transition: all 0.2s ease;
     }
 
     .review-card:hover {
-      background: #f1f1f1;
+      transform: translateY(-2px);
     }
 
     .custom-review-btn {
-      margin-top: 18px;
-      padding: 12px 20px;
-      border-radius: 25px;
+      margin-top: 22px;
+      padding: 13px 22px;
+      border-radius: 28px;
       border: none;
       background: #000;
       color: #fff;
       font-size: 14px;
       cursor: pointer;
+      letter-spacing: 0.3px;
     }
 
+    .custom-review-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Popup */
     .popup {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.45);
+      inset: 0;
+      background: rgba(0,0,0,0.55);
       display: none;
       align-items: center;
       justify-content: center;
@@ -66,9 +93,23 @@
     .popup-box {
       background: #fff;
       padding: 22px 26px;
-      border-radius: 14px;
-      font-size: 16px;
+      border-radius: 16px;
+      font-size: 15px;
       font-weight: 500;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    .popup-box span {
+      font-size: 20px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .footer-text {
+      font-size: 12px;
+      color: #777;
+      margin-top: 18px;
     }
   </style>
 </head>
@@ -76,29 +117,44 @@
 <body>
 
   <div class="review-container">
-    <h2>Leave us a Google Review ❤️</h2>
-    <p>Select a review or type your own</p>
 
+    <!-- LOGO -->
+    <div class="logo">
+      <img src="https://imaginarygifts.in/wp-content/uploads/2021/08/Picsart_25-07-29_04-38-46-389-1300x548.png" alt="Imaginary Gifts">
+    </div>
+
+    <h2>Love your gift? ❤️</h2>
+    <p class="subtitle">Your review helps a small business grow</p>
+
+    <!-- Review Suggestions (Customized) -->
     <div class="review-card" onclick="copyReview(this)">
-      Amazing quality and fast delivery. Loved the personalized touch. Highly recommended!
+      Absolutely loved my order from Imaginary Gifts! The personalization was perfect and the quality exceeded my expectations. Highly recommended for unique gifting.
     </div>
 
     <div class="review-card" onclick="copyReview(this)">
-      Excellent experience! Beautiful customization and very professional service.
+      Amazing experience with Imaginary Gifts. Beautiful customization, premium quality and on-time delivery. Perfect place for personalized gifts.
     </div>
 
     <div class="review-card" onclick="copyReview(this)">
-      Great product quality and timely delivery. Perfect for gifting.
+      Ordered a customized gift and it turned out exactly as promised. Great attention to detail and excellent service. Will definitely order again!
     </div>
 
+    <!-- Type your own -->
     <button class="custom-review-btn" onclick="goToGoogle()">
       ✍️ Type your own review
     </button>
+
+    <div class="footer-text">
+      Thank you for choosing Imaginary Gifts ✨
+    </div>
+
   </div>
 
+  <!-- Popup -->
   <div id="popup" class="popup">
     <div class="popup-box">
-      ✅ Copied! <br> Redirecting to review page...
+      <span>✅</span>
+      Copied! <br> Redirecting to review page...
     </div>
   </div>
 
@@ -109,6 +165,7 @@
     function copyReview(el) {
       navigator.clipboard.writeText(el.innerText);
       document.getElementById("popup").classList.add("show");
+
       setTimeout(() => {
         window.location.href = googleReviewLink;
       }, 1500);
