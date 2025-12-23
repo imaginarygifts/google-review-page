@@ -1,0 +1,50 @@
+<div class="review-container">
+
+  <h2>Leave us a Google Review ❤️</h2>
+  <p>Select a review or type your own</p>
+
+  <!-- Suggested Reviews -->
+  <div class="review-card" onclick="copyReview(this)">
+    Amazing quality and fast delivery. Loved the personalized touch. Highly recommended!
+  </div>
+
+  <div class="review-card" onclick="copyReview(this)">
+    Excellent experience! Beautiful customization and very professional service.
+  </div>
+
+  <div class="review-card" onclick="copyReview(this)">
+    Great product quality and timely delivery. Perfect for gifting.
+  </div>
+
+  <!-- Type your own review button -->
+  <button class="custom-review-btn" onclick="goToGoogle()">
+    ✍️ Type your own review
+  </button>
+
+</div>
+
+<!-- Popup -->
+<div id="popup" class="popup">
+  <div class="popup-box">
+    ✅ Copied! <br>
+    Redirecting to review page...
+  </div>
+</div>
+
+<script>
+const googleReviewLink = "PASTE_YOUR_GOOGLE_REVIEW_LINK_HERE";
+
+function copyReview(el) {
+  navigator.clipboard.writeText(el.innerText);
+
+  document.getElementById("popup").classList.add("show");
+
+  setTimeout(() => {
+    window.location.href = googleReviewLink;
+  }, 1500);
+}
+
+function goToGoogle() {
+  window.location.href = googleReviewLink;
+}
+</script>
